@@ -187,14 +187,6 @@ async function createWidget(data){
   var widget = new ListWidget();
   widget.setPadding(10, 10, 10, 10)
 
-  let firstLineStack = widget.addStack()
-//  let provider = firstLineStack.addText(data.name)
-//  provider.font = Font.mediumSystemFont(12)
-//  provider.textColor = telekom_color
-
-   // Last Update
-  widget.addSpacer()
-
   //let remainingPercentage = (100 / data.initialVolume * data.remainingVolume).toFixed(0);
   let remainingPercentage = (data.usedPercentage).toFixed(0);
 
@@ -219,20 +211,11 @@ async function createWidget(data){
   let symbol = SFSymbol.named('wifi.exclamationmark').image;
   var symbol_image = header_stack.addImage(symbol);
 
-//  const canvTextRect = new Rect(
-//    0,
-//    100 - canvTextSize / 2,
-//    canvSize,
-//    canvTextSize
-//  );
-//  canvas.setTextAlignedCenter();
-//  canvas.setTextColor(telekom_color);
-//  canvas.setFont(Font.boldSystemFont(canvTextSize));
-//  canvas.drawTextInRect(`${data.usedPercentage}%`, canvTextRect);
-//
-//  const canvImage = canvas.getImage();
-//  let image = widget.addImage(canvImage);
-//  image.centerAlignImage()
+  const canvImage = canvas.getImage();
+
+  let firstLineStack = widget.addStack()
+  let image = firstLineStack.addImage(canvImage);
+  // image.centerAlignImage()
 
   widget.addSpacer()
 
