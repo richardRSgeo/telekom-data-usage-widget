@@ -210,15 +210,16 @@ async function createWidget(data){
     canvSize,
     canvTextSize
   );
-  canvas.setTextAlignedCenter();
-  canvas.setTextColor(telekom_color);
-  canvas.setFont(Font.boldSystemFont(canvTextSize));
+//  canvas.setTextAlignedCenter();
+//  canvas.setTextColor(telekom_color);
+//  canvas.setFont(Font.boldSystemFont(canvTextSize));
+//  let symbol = SFSymbol.named('wifi.exclamationmark').image;
+//  canvas.drawTextInRect(`${data.usedPercentage}%`, canvTextRect);
+//  canvas.drawTextInRect(symbol, canvTextRect);
+//  const canvImage = canvas.getImage();
   let symbol = SFSymbol.named('wifi.exclamationmark').image;
-  //canvas.drawTextInRect(`${data.usedPercentage}%`, canvTextRect);
-  canvas.drawTextInRect(symbol, canvTextRect);
-  const canvImage = canvas.getImage();
   let image = widget.addImage(canvImage);
-  image.centerAlignImage()
+  symbol.centerAlignImage()
 
   widget.addSpacer()
 
