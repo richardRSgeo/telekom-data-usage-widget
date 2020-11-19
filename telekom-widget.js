@@ -187,15 +187,15 @@ async function createWidget(data){
   var widget = new ListWidget();
 
   let firstLineStack = widget.addStack()
-  let provider = firstLineStack.addText(data.name)
-  provider.font = Font.mediumSystemFont(12)
-  provider.textColor = telekom_color
+//  let provider = firstLineStack.addText(data.name)
+//  provider.font = Font.mediumSystemFont(12)
+//  provider.textColor = telekom_color
 
    // Last Update
   widget.addSpacer()
 
   //let remainingPercentage = (100 / data.initialVolume * data.remainingVolume).toFixed(0);
-  let remainingPercentage = (100 - data.usedPercentage).toFixed(0);
+  let remainingPercentage = (data.usedPercentage).toFixed(0);
 
   drawArc(
     new Point(canvSize / 2, canvSize / 2),
@@ -213,8 +213,9 @@ async function createWidget(data){
   canvas.setTextAlignedCenter();
   canvas.setTextColor(telekom_color);
   canvas.setFont(Font.boldSystemFont(canvTextSize));
-  canvas.drawTextInRect(`${data.usedPercentage}%`, canvTextRect);
-
+  let symbol = SFSymbol.named('wifi.exclamationmark').image;
+  //canvas.drawTextInRect(`${data.usedPercentage}%`, canvTextRect);
+  canvas.drawTextInRect(symbol, canvTextRect);
   const canvImage = canvas.getImage();
   let image = widget.addImage(canvImage);
   image.centerAlignImage()
@@ -222,12 +223,10 @@ async function createWidget(data){
   widget.addSpacer()
 
   if(widgetSize == "medium"){
-    available_txt = widget.addText(data.remainingVolume + ' von ' + data.initialVolume + ' noch verfügbar.');
+    available_txt = widget.addText(data.remainingVolume + ' / ' + data.initialVolume + ' noch verfügbar.');
   }else{
-    available_txt = widget.addText(data.remainingVolume + ' von ' + data.initialVolume);
+    available_txt = widget.addText(data.remainingVolume + ' / ' + data.initialVolume);
   }
-
-  widget.addSpacer(5)
 
   widget.addSpacer();
 
