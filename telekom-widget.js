@@ -121,7 +121,7 @@ async function processData(data){
 const backColor = Color.dynamic(new Color('D32D1F'), new Color('111111'));
 const backColor2 = Color.dynamic(new Color('76150C'), new Color('222222'));
 const textColor = Color.dynamic(new Color('EDEDED'), new Color('EDEDED'));
-const fillColor = Color.dynamic(new Color('ea0a8e'), new Color('ea0a8e'));
+var fillColor = Color.dynamic(new Color('ea0a8e'), new Color('ea0a8e'));
 const strokeColor = Color.dynamic(new Color('B0B0B0'), new Color('343434'));
 
 const canvas = new DrawContext();
@@ -215,7 +215,7 @@ async function createWidget(data){
     canvWidth,
     Math.floor(remainingPercentage * 3.6)
   );
-
+  var header_stack = widget.addStack();
   let symbol = SFSymbol.named('wifi.exclamationmark').image;
   var symbol_image = header_stack.addImage(symbol);
 
