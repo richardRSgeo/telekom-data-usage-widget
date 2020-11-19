@@ -118,6 +118,12 @@ async function processData(data){
   return telekom;
 }
 
+const backColor = Color.dynamic(new Color('D32D1F'), new Color('111111'));
+const backColor2 = Color.dynamic(new Color('76150C'), new Color('222222'));
+const textColor = Color.dynamic(new Color('EDEDED'), new Color('EDEDED'));
+const fillColor = Color.dynamic(new Color('EDEDED'), new Color('EDEDED'));
+const strokeColor = Color.dynamic(new Color('B0B0B0'), new Color('121212'));
+
 const canvas = new DrawContext();
 const canvSize = 200;
 const canvTextSize = 36;
