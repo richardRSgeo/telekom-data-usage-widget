@@ -187,14 +187,15 @@ async function createWidget(data){
   var widget = new ListWidget();
 
   let firstLineStack = widget.addStack()
-  let provider = firstLineStack.addText("Telekom")
+  let provider = firstLineStack.addText(data.name)
   provider.font = Font.mediumSystemFont(12)
   provider.textColor = telekom_color
 
    // Last Update
   widget.addSpacer()
 
-  let remainingPercentage = (100 / data.initialVolume * data.remainingVolume).toFixed(0);
+  //let remainingPercentage = (100 / data.initialVolume * data.remainingVolume).toFixed(0);
+  let remainingPercentage = (100 - data.usedPercentage).toFixed(0);
 
   drawArc(
     new Point(canvSize / 2, canvSize / 2),
@@ -230,25 +231,25 @@ async function createWidget(data){
 
   widget.addSpacer();
 
-  var footer = widget.addText('Bis: ' + df.string(data.validUntil).toLocaleString() + ' (' + getDaysHours(data) + ')');
+  var footer = widget.addText('Bis: ' + df.string(data.validUntil).toLocaleString());
 
 
   // ASSIGNING FONTS
-  title.font = title_font;
+  // title.font = title_font;
   available_txt.font = thin_font;
-  used_txt.font = bold_font;
+  // used_txt.font = bold_font;
   footer.font = small_font;
 
   // COLORING BASED ON DATA PERCENTAGE
-  if(data.usedPercentage >= 75){
-    used_txt.textColor = Color.red();
-  }else if(data.usedPercentage >= 50 && data.usedPercentage < 75){
-    used_txt.textColor = Color.orange();
-  } else if(data.usedPercentage >= 25 && data.usedPercentage < 50){
-    used_txt.textColor = Color.yellow();
-  }else{
-    used_txt.textColor = Color.green();
-  }
+//  if(data.usedPercentage >= 75){
+//    used_txt.textColor = Color.red();
+//  }else if(data.usedPercentage >= 50 && data.usedPercentage < 75){
+//    used_txt.textColor = Color.orange();
+//  } else if(data.usedPercentage >= 25 && data.usedPercentage < 50){
+//    used_txt.textColor = Color.yellow();
+//  }else{
+//    used_txt.textColor = Color.green();
+//  }
 
 
   // BACKGROUND
