@@ -125,10 +125,10 @@ const fillColor = Color.dynamic(new Color('ea0a8e'), new Color('ea0a8e'));
 const strokeColor = Color.dynamic(new Color('B0B0B0'), new Color('343434'));
 
 const canvas = new DrawContext();
-const canvSize = 200;
+const canvSize = 250;
 const canvTextSize = 36;
 
-const canvWidth = 22;
+const canvWidth = 20;
 const canvRadius = 80;
 
 canvas.opaque = false
@@ -198,6 +198,17 @@ async function createWidget(data){
   //let remainingPercentage = (100 / data.initialVolume * data.remainingVolume).toFixed(0);
   let remainingPercentage = (data.usedPercentage).toFixed(0);
 
+    // COLORING BASED ON DATA PERCENTAGE
+  if(data.usedPercentage >= 75){
+    fillColor = Color.red();
+  }else if(data.usedPercentage >= 50 && data.usedPercentage < 75){
+    fillColor = Color.orange();
+  } else if(data.usedPercentage >= 25 && data.usedPercentage < 50){
+    fillColor = Color.yellow();
+  }else{
+    fillColor = Color.green();
+  }
+
   drawArc(
     new Point(canvSize / 1.25, canvSize / 2),
     canvRadius,
@@ -205,20 +216,23 @@ async function createWidget(data){
     Math.floor(remainingPercentage * 3.6)
   );
 
-  const canvTextRect = new Rect(
-    0,
-    100 - canvTextSize / 2,
-    canvSize,
-    canvTextSize
-  );
-  canvas.setTextAlignedCenter();
-  canvas.setTextColor(telekom_color);
-  canvas.setFont(Font.boldSystemFont(canvTextSize));
-  canvas.drawTextInRect(`${data.usedPercentage}%`, canvTextRect);
+  let symbol = SFSymbol.named('wifi.exclamationmark').image;
+  var symbol_image = header_stack.addImage(symbol);
 
-  const canvImage = canvas.getImage();
-  let image = widget.addImage(canvImage);
-  image.centerAlignImage()
+//  const canvTextRect = new Rect(
+//    0,
+//    100 - canvTextSize / 2,
+//    canvSize,
+//    canvTextSize
+//  );
+//  canvas.setTextAlignedCenter();
+//  canvas.setTextColor(telekom_color);
+//  canvas.setFont(Font.boldSystemFont(canvTextSize));
+//  canvas.drawTextInRect(`${data.usedPercentage}%`, canvTextRect);
+//
+//  const canvImage = canvas.getImage();
+//  let image = widget.addImage(canvImage);
+//  image.centerAlignImage()
 
   widget.addSpacer()
 
@@ -239,25 +253,8 @@ async function createWidget(data){
   // used_txt.font = bold_font;
   footer.font = small_font;
 
-  // COLORING BASED ON DATA PERCENTAGE
-//  if(data.usedPercentage >= 75){
-//    used_txt.textColor = Color.red();
-//  }else if(data.usedPercentage >= 50 && data.usedPercentage < 75){
-//    used_txt.textColor = Color.orange();
-//  } else if(data.usedPercentage >= 25 && data.usedPercentage < 50){
-//    used_txt.textColor = Color.yellow();
-//  }else{
-//    used_txt.textColor = Color.green();
-//  }
-
-
   // BACKGROUND
-  if(IMAGE_BACKGROUND){
-    image = await fm.readImage(fm.joinPath(dir, IMAGE_NAME))
-    widget.backgroundImage = image
-  }else{
-    widget.backgroundColor = new Color(BACKGROUND_COLOR)
-  }
+  widget.backgroundColor = new Color(BACKGROUND_COLOR)
 
 
   return widget;
