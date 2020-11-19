@@ -121,8 +121,8 @@ async function processData(data){
 const backColor = Color.dynamic(new Color('D32D1F'), new Color('111111'));
 const backColor2 = Color.dynamic(new Color('76150C'), new Color('222222'));
 const textColor = Color.dynamic(new Color('EDEDED'), new Color('EDEDED'));
-const fillColor = Color.dynamic(new Color('EDEDED'), new Color('EDEDED'));
-const strokeColor = Color.dynamic(new Color('B0B0B0'), new Color('121212'));
+const fillColor = Color.dynamic(new Color('ea0a8e'), new Color('ea0a8e'));
+const strokeColor = Color.dynamic(new Color('B0B0B0'), new Color('343434'));
 
 const canvas = new DrawContext();
 const canvSize = 200;
@@ -185,6 +185,7 @@ var today = new Date();
 async function createWidget(data){
 
   var widget = new ListWidget();
+  widget.setPadding(10, 10, 10, 10)
 
   let firstLineStack = widget.addStack()
 //  let provider = firstLineStack.addText(data.name)
@@ -198,7 +199,7 @@ async function createWidget(data){
   let remainingPercentage = (data.usedPercentage).toFixed(0);
 
   drawArc(
-    new Point(canvSize / 2, canvSize / 2),
+    new Point(canvSize / 1.25, canvSize / 2),
     canvRadius,
     canvWidth,
     Math.floor(remainingPercentage * 3.6)
